@@ -4,7 +4,6 @@ require_once "funciones.php";
         $idOculto =$_POST["oculto"];
         print($idOculto);
         foreach ($_SESSION["cesta"] as $producto) {
-            print_r2($producto);
             if ($producto["id"]==$idOculto) {
                 $producto=null;
             }
