@@ -89,6 +89,17 @@
         return $count;
     }
 
+    # Actualizar datos de un usuario
+    #
+    function updatePassUsuario($id,$contraseña){
+        $pdo=getConexionPDO();
+        $sql="UPDATE Usuarios SET contraseña=? WHERE id=?";
+        $consulta=$pdo->prepare($sql);
+        $consulta->execute([$contraseña,$id]);
+        $count = $consulta->rowCount();
+        return $count;
+    }
+
     # Resetear por completo la tabla usuarios
     # MUY PELIGROSO, se pierden todos los datos
     function eraseUsuarios(){
@@ -159,10 +170,10 @@
     # 
     function getProductosFiltroNombre($nombre){
         $pdo=getConexionPDO();
-        $sql="SELECT * FROM Productos WHERE nombre=? ORDER BY categoria";
+        $sql="SELECT * FROM Productos WHERE nombre LIKE ? ORDER BY categoria";
         $consulta=$pdo->prepare($sql);
         $consulta->execute([$nombre]);
-        $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
+        $resultado=$consulta->fetchAll(PDO::FETCH_ASSOC);
         return $resultado;
     }
 
@@ -179,11 +190,11 @@
 
     # Obtener un usuario
     # 
-    function getProducto($usuario){
+    function getProducto($id){
         $pdo=getConexionPDO();
-        $sql="SELECT * FROM Usuarios WHERE usuario=?";
+        $sql="SELECT * FROM Productos WHERE id=?";
         $consulta=$pdo->prepare($sql);
-        $consulta->execute([$usuario]);
+        $consulta->execute([$id]);
         $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
         return $resultado;
     }

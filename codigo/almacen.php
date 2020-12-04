@@ -42,9 +42,12 @@ require_once "funciones.php";
                 <input type="submit" name="buscar" value="Buscar">
             </fieldset>
         </form>
-        <?php if(isset($_POST["buscar"])) :?>
-            <?php print_r2(getProductosFiltroNombre($_POST["busqueda"]))?>
-        <?php endif ;?>
+            <?php 
+                if (isset($_POST["buscar"])) {
+                    $busqueda = "%".$_POST["busqueda"]."%";
+                    print_r2(getProductosFiltroNombre($busqueda));
+                }
+            ?>
     <!--Añadir producto-->
     <form action="" method="POST">
         <fieldset>
@@ -55,7 +58,7 @@ require_once "funciones.php";
                     <option value="<?=$categoria["id"]?>"><?=$categoria["nombre"]?></option>
                 <?php endforeach ;?>
             </select><br>
-            <input type="number" name="precio" min="1" placeholder="precio" required><br>
+            <input type="number" step=".01" name="precio" min="1" placeholder="precio" required><br>
             <input type="submit" name="añadirProducto" value="Añadir producto">
         </fieldset>
     </form>

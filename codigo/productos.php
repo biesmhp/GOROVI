@@ -1,6 +1,9 @@
 <?php
 require_once "funciones.php";
-    
+    if (isset($_POST["añadirCesta"])) {
+        $producto=$_POST["producto"];
+        $_SESSION["cesta"][]=getProducto($producto);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +17,13 @@ require_once "funciones.php";
     <nav>
         <a href="portada.php">Inicio</a>
     </nav>
-    <?php print_r2(getProductos()); ?>
+    <form action="" method="POST">
+        <select name="producto">
+            <?php foreach(getProductos() as $productos) :?>
+                <option value="<?=$productos["id"]?>"><?=$productos["nombre"]?></option>
+            <?php endforeach ;?>
+        </select>
+        <input type="submit" name="añadirCesta" value="Añadir a la cesta">
+    </form>
 </body>
 </html>

@@ -7,7 +7,7 @@ require_once "funciones.php";
             $_SESSION["usuario"]=getUsuario($usuario);
             header("Location: portada.php");
         }else{
-            echo "Error de autentificación";
+            $veriContraseña=false;
         }
     }
 ?>
@@ -27,7 +27,11 @@ require_once "funciones.php";
         <fieldset>
             <legend>Inicio de sesión</legend>
             <input type="text" name="usuario" placeholder="usuario"><br>
-            <input type="password" name="contraseña" placeholder="contraseña"><br>
+            <input type="password" name="contraseña" placeholder="contraseña">
+            <?php if(isset($veriContraseña)) :?>
+                Contraseña incorrecta
+            <?php endif ;?>
+            <br>
             <input type="submit" name="login" value="Iniciar"><br>
         </fieldset>
     </form>

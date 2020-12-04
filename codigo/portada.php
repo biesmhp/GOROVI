@@ -24,6 +24,7 @@ require_once "funciones.php";
             <a href="admin.php">Administración</a>
             <a href="almacen.php">Almacen</a>
         <?php endif ;?>
+        <a href="cesta.php">Carrito</a>
     <?php endif ;?>
 </body>
 </html>
