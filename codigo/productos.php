@@ -35,12 +35,14 @@ require_once "funciones.php";
                 <td>
                     <?= $producto["precio"] ?>
                 </td>
-                <td>
-                    <form action="" method="POST">
-                        <input type="hidden" name="oculto" value="<?=$producto["id"]?>">
-                        <input type="submit" name="añadir" value="Añadir a la cesta">
-                    </form>
-                </td>
+                <?php if(isset($_SESSION["usuario"])) :?>
+                    <td>
+                        <form action="" method="POST">
+                            <input type="hidden" name="oculto" value="<?=$producto["id"]?>">
+                            <input type="submit" name="añadir" value="Añadir a la cesta">
+                        </form>
+                    </td>
+                <?php endif ;?>
             </tr>
         <?php endforeach ;?>
     </table>

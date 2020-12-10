@@ -14,11 +14,11 @@ require_once "funciones.php";
 </head>
 <body>
     <nav>
-        <a href="login.php">Inicio de sesion</a>
-        <?php if(!isset($_SESSION)) :?>
-            <a href="registro.php">Registrarse</a>
-        <?php endif ;?>
         <a href="productos.php">Productos</a>
+        <?php if(!isset($_SESSION["usuario"])) :?>
+            <a href="registro.php">Registrarse</a>
+            <a href="login.php">Inicio de sesion</a>
+        <?php endif ;?>
     </nav>
     <?php if(isset($_SESSION["usuario"])) :?>
         <a href="perfil.php"><?= "Perfil de: ".$_SESSION["usuario"]["usuario"]?></a>
