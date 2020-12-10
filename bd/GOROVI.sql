@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 02-12-2020 a las 17:53:19
--- Versión del servidor: 10.4.16-MariaDB
--- Versión de PHP: 7.4.12
+-- Tiempo de generación: 10-12-2020 a las 19:40:59
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,8 @@ INSERT INTO `Categorias` (`id`, `nombre`, `imagen`) VALUES
 (5, 'Sombreros', 'imagen.png'),
 (8, 'Pantalones', 'imagen.png'),
 (11, 'Zapatos', 'imagen.png'),
-(12, 'Camisetas', 'imagen.png');
+(12, 'Camisetas', 'imagen.png'),
+(13, 'Bañadores', 'imagen.png');
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ INSERT INTO `Productos` (`id`, `nombre`, `descripcion`, `categoria`, `imagen`, `
 (5, 'Tophat', 'Sin descripción. ', 5, 'imagen.png', 2, 0),
 (6, 'Silvercrab', 'Sin descripción. ', 8, 'imagen.png', 16, 0),
 (7, 'Flamencos', 'Sin descripción. ', 8, 'imagen.png', 8, 0),
-(8, 'Payaso', 'Sin descripción. ', 11, 'imagen.png', 10, 0),
+(8, 'Gigantix', 'Sin descripción. ', 11, 'imagen.png', 10, 0),
 (9, 'Alpino', 'Sin descripción. ', 12, 'imagen.png', 4, 0),
 (10, 'Invernalia', 'Sin descripción. ', 12, 'imagen.png', 9, 0);
 
@@ -95,7 +96,7 @@ CREATE TABLE `Usuarios` (
 --
 
 INSERT INTO `Usuarios` (`id`, `usuario`, `contraseña`, `nombre`, `apellidos`, `email`, `imagen`, `rol`) VALUES
-(31, 'Javi', '4d186321c1a7f0f354b297e8914ab240', 'Javier', 'Perez Gutierrez', 'javipg@gmail.com', 'imagen.png', 'administrador'),
+(31, 'Javi', '4d186321c1a7f0f354b297e8914ab240', 'Javierchu', 'Perez Gutierrez', 'javipg@gmail.com', 'imagen.png', 'administrador'),
 (41, 'prueba', '81dc9bdb52d04dc20036dbd8313ed055', 'Proban', 'Martinez', 'pmar@correo.com', 'imagen.png', 'cliente');
 
 --
@@ -132,7 +133,7 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `Categorias`
 --
 ALTER TABLE `Categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `Productos`
@@ -144,7 +145,7 @@ ALTER TABLE `Productos`
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- Restricciones para tablas volcadas
