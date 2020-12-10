@@ -1,7 +1,7 @@
 <?php
 require_once "funciones.php";
-    if (isset($_POST["añadirCesta"])) {
-        $producto=$_POST["producto"];
+    if (isset($_POST["añadir"])) {
+        $producto=$_POST["oculto"];
         $_SESSION["cesta"][]=getProducto($producto);
     }
 ?>
@@ -17,13 +17,32 @@ require_once "funciones.php";
     <nav>
         <a href="portada.php">Inicio</a>
     </nav>
-    <form action="" method="POST">
-        <select name="producto">
-            <?php foreach(getProductos() as $productos) :?>
-                <option value="<?=$productos["id"]?>"><?=$productos["nombre"]?></option>
-            <?php endforeach ;?>
-        </select>
-        <input type="submit" name="añadirCesta" value="Añadir a la cesta">
-    </form>
+    
+    <table border="1">
+        <thead>Productos</thead>
+        <th>Imagen</th><th>Nombre</th><th>Categoria</th><th>Precio</th>
+        <?php foreach(getProductos() as $producto) :?>
+            <tr>
+                <td>
+                    <img src="<?= $producto["nombre"] ?>" alt="<?= $producto["imagen"] ?>">
+                </td>
+                <td>
+                    <?= $producto["nombre"] ?>
+                </td>
+                <td>
+                    <?= $producto["categoria"] ?>
+                </td>
+                <td>
+                    <?= $producto["precio"] ?>
+                </td>
+                <td>
+                    <form action="" method="POST">
+                        <input type="hidden" name="oculto" value="<?=$producto["id"]?>">
+                        <input type="submit" name="añadir" value="Añadir a la cesta">
+                    </form>
+                </td>
+            </tr>
+        <?php endforeach ;?>
+    </table>
 </body>
 </html>

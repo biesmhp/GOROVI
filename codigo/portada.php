@@ -15,7 +15,9 @@ require_once "funciones.php";
 <body>
     <nav>
         <a href="login.php">Inicio de sesion</a>
-        <a href="registro.php">Registrarse</a>
+        <?php if(!isset($_SESSION)) :?>
+            <a href="registro.php">Registrarse</a>
+        <?php endif ;?>
         <a href="productos.php">Productos</a>
     </nav>
     <?php if(isset($_SESSION["usuario"])) :?>
@@ -24,7 +26,7 @@ require_once "funciones.php";
             <a href="admin.php">Administración</a>
             <a href="almacen.php">Almacen</a>
         <?php endif ;?>
-        <a href="cesta.php">Carrito</a>
+        <a href="cesta.php">Cesta</a>
     <?php endif ;?>
 </body>
 </html>

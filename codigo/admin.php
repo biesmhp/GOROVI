@@ -47,7 +47,9 @@ require_once "funciones.php";
     <form action="" method="POST">
         <select name="usuarios">
             <?php foreach(getUsuarios() as $usuario) :?>
-                <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
+                    <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php endif ;?>
             <?php endforeach ;?>
         </select>
         <input type="submit" name="borrar" value="Borrar usuario">
@@ -55,7 +57,9 @@ require_once "funciones.php";
     <form action="" method="POST">
         <select name="usuarios">
             <?php foreach(getUsuarios() as $usuario) :?>
-                <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
+                    <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php endif ;?>
             <?php endforeach ;?>
         </select>
         <input type="submit" name="ascender" value="Convertir en admin">
@@ -63,14 +67,12 @@ require_once "funciones.php";
     <form action="" method="POST">
         <select name="usuarios">
             <?php foreach(getUsuarios() as $usuario) :?>
-                <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
+                    <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
+                <?php endif ;?>
             <?php endforeach ;?>
         </select>
         <input type="submit" name="descender" value="Quitar de admin">
     </form>
-    <form action="" method="POST">
-                
-    </form>
-    <a href="almacen.php">Almacén</a>
 </body>
 </html>

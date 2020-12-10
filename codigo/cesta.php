@@ -2,12 +2,8 @@
 require_once "funciones.php";
     if (isset($_POST["quitar"])) {
         $idOculto =$_POST["oculto"];
-        print($idOculto);
-        foreach ($_SESSION["cesta"] as $producto) {
-            if ($producto["id"]==$idOculto) {
-                $producto=null;
-            }
-        }
+        // print($idOculto);
+        // print_r2($_SESSION["cesta"]);
     }
     if (isset($_POST["vaciar"])) {
         $_SESSION["cesta"]=null;
@@ -58,6 +54,5 @@ require_once "funciones.php";
             <input type="submit" name="vaciar" value="Vaciar toda la cesta">
         </fieldset>
     </form>
-    <?php print_r2($_SESSION["cesta"]); ?>
 </body>
 </html>
