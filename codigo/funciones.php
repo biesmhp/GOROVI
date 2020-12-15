@@ -6,18 +6,18 @@
         //Generales
     ##################
 
-    # Constantes para acceder a base de datos
-    define("HOST", "localhost");
-    define("USERNAME", "root");
-    define("PASSWORD", "");
-    define("DATABASE", "GOROVI");
-
     # Funcion para mostrar arrays más ordenados
     function print_r2($val){
         echo "<pre>";
         print_r($val);
         echo "</pre>";
     }
+
+    # Constantes para acceder a base de datos
+    define("HOST", "localhost");
+    define("USERNAME", "root");
+    define("PASSWORD", "");
+    define("DATABASE", "GOROVI");
 
     # Función para conectar a la base de datos
     # PDO
