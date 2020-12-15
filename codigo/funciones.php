@@ -13,11 +13,37 @@
         echo "</pre>";
     }
 
-    # Constantes para acceder a base de datos
-    define("HOST", "localhost");
-    define("USERNAME", "root");
-    define("PASSWORD", "");
-    define("DATABASE", "GOROVI");
+    class Singleton {
+        // Constantes
+        const HOST = "localhost";
+        const USERNAME = "admin";
+        const PASSWORD = "";
+        const DATABASE = "GOROVI";
+
+        // Hold the class instance.
+        private static $instance = null;
+        
+        // The constructor is private
+        // to prevent initiation with outer code.
+        private function __construct()
+        {
+          // The expensive process (e.g.,db connection) goes here.
+          
+        }
+       
+        // The object is created from within the class itself
+        // only if the class has no instance.
+        public static function getInstance()
+        {
+          if (self::$instance == null)
+          {
+            self::$instance = new Singleton();
+          }
+       
+          return self::$instance;
+        }
+    }
+    
 
     # Función para conectar a la base de datos
     # PDO
