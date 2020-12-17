@@ -11,7 +11,7 @@
     define("USERNAME", "root");
     define("PASSWORD", "");
     define("DATABASE", "GOROVI");
-
+    
     # Funcion para mostrar arrays más ordenados
     function print_r2($val){
         echo "<pre>";
