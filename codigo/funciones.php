@@ -28,7 +28,10 @@
         private function __construct()
         {
           // The expensive process (e.g.,db connection) goes here.
-          
+          $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+            $conexion = new PDO('mysql:host='.HOST.';dbname='.DATABASE,USERNAME,PASSWORD,$opciones);
+            //unset($conexion);
+            return $conexion;
         }
        
         // The object is created from within the class itself
