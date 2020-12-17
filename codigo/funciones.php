@@ -18,7 +18,7 @@
         print_r($val);
         echo "</pre>";
     }
-
+    
     # Función para conectar a la base de datos
     # PDO
     function getConexionPDO(){
