@@ -2,8 +2,14 @@
     # Habilitar sesiones
     session_start();
 
+    # Funcion para mostrar arrays más ordenados
+    function print_r2($val){
+        echo "<pre>";
+        print_r($val);
+        echo "</pre>";
+    }
     ##################
-        //Generales
+        //Base de datos
     ##################
 
     # Constantes para acceder a base de datos
@@ -11,14 +17,7 @@
     define("USERNAME", "root");
     define("PASSWORD", "");
     define("DATABASE", "GOROVI");
-    
-    # Funcion para mostrar arrays más ordenados
-    function print_r2($val){
-        echo "<pre>";
-        print_r($val);
-        echo "</pre>";
-    }
-    
+
     # Función para conectar a la base de datos
     # PDO
     function getConexionPDO(){
