@@ -74,6 +74,31 @@
             $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
             return $resultado;
         }
+
+        # Añadir un usuario (imagen y rol por defecto)
+        # 
+        public static function addUsuario($usuario,$contraseña,$nombre,$apellidos,$email){
+            # Valores por defecto
+            $imagen="imagen.png";
+            $rol="cliente";
+            $pdo=self::getConexion();
+            $sql="INSERT INTO Usuarios(usuario,contraseña,nombre,apellidos,email,imagen,rol) VALUES (?,?,?,?,?,?,?)";
+            $consulta=$pdo->prepare($sql);
+            $consulta->execute([$usuario,$contraseña,$nombre,$apellidos,$email,$imagen,$rol]);
+            $count = $consulta->rowCount();
+            return $count;
+        }
+
+        # Borrar un usuario
+        # 
+        function delUsuario($usuario){
+            $pdo=self::getConexion();
+            $sql="DELETE FROM Usuarios WHERE usuario=?";
+            $consulta=$pdo->prepare($sql);
+            $consulta->execute([$usuario]);
+            $count = $consulta->rowCount();
+            return $count;
+        }
     }
     
 
@@ -102,30 +127,30 @@
     //     return $resultado;
     // }
 
-    # Añadir un usuario (imagen y rol por defecto)
-    # 
-    function addUsuario($usuario,$contraseña,$nombre,$apellidos,$email){
-        # Valores por defecto
-        $imagen="imagen.png";
-        $rol="cliente";
-        $pdo=getConexionPDO();
-        $sql="INSERT INTO Usuarios(usuario,contraseña,nombre,apellidos,email,imagen,rol) VALUES (?,?,?,?,?,?,?)";
-        $consulta=$pdo->prepare($sql);
-        $consulta->execute([$usuario,$contraseña,$nombre,$apellidos,$email,$imagen,$rol]);
-        $count = $consulta->rowCount();
-        return $count;
-    }
+    // # Añadir un usuario (imagen y rol por defecto)
+    // # 
+    // function addUsuario($usuario,$contraseña,$nombre,$apellidos,$email){
+    //     # Valores por defecto
+    //     $imagen="imagen.png";
+    //     $rol="cliente";
+    //     $pdo=getConexionPDO();
+    //     $sql="INSERT INTO Usuarios(usuario,contraseña,nombre,apellidos,email,imagen,rol) VALUES (?,?,?,?,?,?,?)";
+    //     $consulta=$pdo->prepare($sql);
+    //     $consulta->execute([$usuario,$contraseña,$nombre,$apellidos,$email,$imagen,$rol]);
+    //     $count = $consulta->rowCount();
+    //     return $count;
+    // }
 
-    # Borrar un usuario
-    # 
-    function delUsuario($usuario){
-        $pdo=getConexionPDO();
-        $sql="DELETE FROM Usuarios WHERE usuario=?";
-        $consulta=$pdo->prepare($sql);
-        $consulta->execute([$usuario]);
-        $count = $consulta->rowCount();
-        return $count;
-    }
+    // # Borrar un usuario
+    // # 
+    // function delUsuario($usuario){
+    //     $pdo=getConexionPDO();
+    //     $sql="DELETE FROM Usuarios WHERE usuario=?";
+    //     $consulta=$pdo->prepare($sql);
+    //     $consulta->execute([$usuario]);
+    //     $count = $consulta->rowCount();
+    //     return $count;
+    // }
 
     # Actualizar datos de un usuario
     #

@@ -1,5 +1,6 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
     # Ejecuta un pequeño script para dar un aviso (debes cerrar sesión antes de crear otro usuario)
     if (isset($_SESSION["usuario"])) {
         echo'<script type="text/javascript">alert("Cierra sesión antes");window.location.href="perfil.php";</script>';
@@ -17,14 +18,14 @@ require_once "funciones.php";
         }else{
             $veriContraseña = false;
         }
-        if (getUsuario($usuario)==null) {
+        if ($instance::getUsuario($usuario)==null) {
             $veriUser = true;
         }else{
             $veriUser = false;
         }
         if ($veriContraseña&&$veriUser) {
-            addUsuario($usuario,$contraseña,$nombre,$apellidos,$email);
-            $_SESSION["usuario"]=getUsuario($usuario);
+            $instance::addUsuario($usuario,$contraseña,$nombre,$apellidos,$email);
+            $_SESSION["usuario"]=$instance::getUsuario($usuario);
             header("Location: portada.php");
         }
     }

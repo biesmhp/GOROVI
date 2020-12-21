@@ -1,10 +1,11 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
     if (isset($_POST["login"])) {
         $usuario = $_POST["usuario"];
         $contraseña = md5($_POST["contraseña"]);
         if (logUsuario($usuario,$contraseña)) {
-            $_SESSION["usuario"]=getUsuario($usuario);
+            $_SESSION["usuario"]=$instance::getUsuario($usuario);
             header("Location: portada.php");
         }else{
             $veriContraseña=false;

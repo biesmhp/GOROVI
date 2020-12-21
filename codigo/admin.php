@@ -12,7 +12,7 @@ $instance = BaseDatos::getInstance();
     # Borra el usuario seleccionado si no es el usado actualmente
     if (isset($_POST["borrar"])) {
         if (!($_POST["usuarios"]==$_SESSION["usuario"]["usuario"])) {
-            delUsuario($_POST["usuarios"]);
+            $instance::delUsuario($_POST["usuarios"]);
         }
     }
     # Asciende a admin al usuario seleccionado si no es el usado actualmente
