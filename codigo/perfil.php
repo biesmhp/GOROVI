@@ -84,15 +84,15 @@ if (isset($_POST["cambiar"])) {
             <div class="col  m-0 py-2 text-center align-content-center justify-content-center">
                 <img src="homer.jpg" alt="" style="border-radius:50%;width:150px;height:150px">
                 <!--Cerrar sesión-->
-                <form class="mt-3" action="" method="POST">
-                    <input class="form-control" type="submit" name="cerrar" value="Cerrar sesión">
+                <form class="mt-3 shadow" action="" method="POST">
+                    <input class="form-control botones" type="submit" name="cerrar" value="Cerrar sesión">
                 </form>
             </div>
             <!--Actualizar los datos del usuario-->
             <div class="shadow col  mx-2 d-flex py-2 border border-secondary rounded fondo-producto text-center d-flex align-content-center justify-content-center">
                 <form action="" method="POST">
                     <fieldset>
-                        <legend>Datos</legend>
+                        <legend>Datos:</legend>
                         <input class="form-control" type="text" name="usuario" value="<?= $_SESSION["usuario"]["usuario"] ?>" placeholder="usuario" required><br>
                         <input class="form-control" type="text" name="nombre" value="<?= $_SESSION["usuario"]["nombre"] ?>" placeholder="nombre" required><br>
                         <input class="form-control" type="text" name="apellidos" value="<?= $_SESSION["usuario"]["apellidos"] ?>" placeholder="apellidos" required><br>
@@ -106,7 +106,7 @@ if (isset($_POST["cambiar"])) {
             <div class="shadow col  mx-2 d-flex py-2 border border-secondary rounded fondo-producto text-center d-flex align-content-center justify-content-center">
                 <form action="" method="POST">
                     <fieldset>
-                        <legend>Cambiar la contraseña</legend>
+                        <legend>Cambiar la contraseña:</legend>
                         <input class="form-control" type="password" name="pass0" placeholder="Contraseña actual" required>
                         <?php if (isset($_POST["cambiar"]) && !$veriPassActual) : ?>
                             Contraseña incorrecta
@@ -123,19 +123,13 @@ if (isset($_POST["cambiar"])) {
                 </form>
             </div>
             <!--Borrar usuario-->
-        <div class="col  m-0 d-flex py-2 border border-secondary rounded">
-            <form action="" method="POST">
-                <fieldset>
-                    <legend>ATENCION, esta acción es irreversible</legend>
-                    <input class="form-control" type="submit" name="borrar" value="Borrar este usuario">
-                </fieldset>
-            </form>
+            <div class="col  m-0 d-flex py-2 rounded text-center d-flex align-content-center justify-content-center">
+                <form action="" method="POST">
+                    <label class="borrar-usuario" for="borrar">Atención, esta acción es irreversible</label>
+                    <input class="form-control shadow" type="submit" name="borrar" value="Borrar este usuario" style="background-color: rgb(251, 143, 143);">
+                </form>
+            </div>
         </div>
-        </div>
-
-        <br>
-
-        
     </div>
 </body>
 
