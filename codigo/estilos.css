@@ -1,0 +1,30 @@
+html {
+  height: 100hv;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(248, 231, 176);
+}
+
+.fondo-producto {
+  background-color: rgb(95, 176, 243);
+}
+
+.botones {
+  background-color: #fff;
+  color: black;
+}
+
+.botones:hover {
+  background-color: orange;
+}
+
+.volver:hover {
+  color: rgb(248, 231, 176) !important;
+}
+
+.fondo {
+  background-color: rgb(248, 231, 176) !important;
+}
