@@ -1,5 +1,6 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
     if (isset($_SESSION["usuario"])) {
         if (!($_SESSION["usuario"]["rol"]=="administrador")) {
             echo'<script type="text/javascript">alert("Página solo para administradores");window.location.href="portada.php";</script>';
@@ -40,13 +41,13 @@ require_once "funciones.php";
         <a href="portada.php">Inicio</a>
     </nav>
     <!--Muestra todos los usuarios y sus campos-->
-    <?php if(isset($_POST["ver"])){print_r2(getUsuarios());}?>
+    <?php if(isset($_POST["ver"])){print_r2($instance::getUsuarios());}?>
     <form action="" method="POST">
         <input type="submit" name="ver" value="Ver todos los usuarios">
     </form>
     <form action="" method="POST">
         <select name="usuarios">
-            <?php foreach(getUsuarios() as $usuario) :?>
+            <?php foreach($instance::getUsuarios() as $usuario) :?>
                 <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
                     <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
                 <?php endif ;?>
@@ -56,7 +57,7 @@ require_once "funciones.php";
     </form>
     <form action="" method="POST">
         <select name="usuarios">
-            <?php foreach(getUsuarios() as $usuario) :?>
+            <?php foreach($instance::getUsuarios() as $usuario) :?>
                 <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
                     <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
                 <?php endif ;?>
@@ -66,7 +67,7 @@ require_once "funciones.php";
     </form>
     <form action="" method="POST">
         <select name="usuarios">
-            <?php foreach(getUsuarios() as $usuario) :?>
+            <?php foreach($instance::getUsuarios() as $usuario) :?>
                 <?php if($usuario["usuario"]!=$_SESSION["usuario"]["usuario"]) :?>
                     <option value="<?=$usuario["usuario"]?>"><?=$usuario["usuario"]?></option>
                 <?php endif ;?>

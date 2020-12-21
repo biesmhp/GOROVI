@@ -27,30 +27,80 @@
         return $conexion;
     }
 
+    class BaseDatos
+    {
+        const LUGAR = "mysql:host=localhost;dbname=GOROVI";
+        const USUARIO = 'root';
+        const PASSWORD = '';
+
+        private static $instance = null;
+
+        private function __construct(){}
+
+        public static function getInstance()
+        {
+            if (self::$instance == null)
+                # Si no está ya creado
+                self::$instance = new BaseDatos();
+            return self::$instance;
+        }
+
+        private function getConexion()
+        {
+            $opciones = array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8");
+            $conexion = new PDO(self::LUGAR,self::USUARIO,self::PASSWORD,$opciones);
+            return $conexion;
+        }
+
+        ##################################################################################
+            //FUNCIONES DE USUARIOS
+        ############################################################
+
+        # Obtener todos los usuarios
+        # 
+        public static function getUsuarios(){
+            $pdo=self::getConexion();
+            $sql="SELECT * FROM Usuarios";
+            $consulta=$pdo->query($sql);
+            $usuarios=$consulta->fetchAll(PDO::FETCH_ASSOC);
+            return $usuarios;
+        }
+
+        public static function getUsuario($usuario){
+            $pdo=self::getConexion();
+            $sql="SELECT * FROM Usuarios WHERE usuario=?";
+            $consulta=$pdo->prepare($sql);
+            $consulta->execute([$usuario]);
+            $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
+            return $resultado;
+        }
+    }
+    
+
     ##################################################################################
         //FUNCIONES DE USUARIOS
     ############################################################
 
-    # Obtener todos los usuarios
-    # 
-    function getUsuarios(){
-        $pdo=getConexionPDO();
-        $sql="SELECT * FROM Usuarios";
-        $consulta=$pdo->query($sql);
-        $usuarios=$consulta->fetchAll(PDO::FETCH_ASSOC);
-        return $usuarios;
-    }
+    // # Obtener todos los usuarios
+    // # 
+    // function getUsuarios(){
+    //     $pdo=getConexionPDO();
+    //     $sql="SELECT * FROM Usuarios";
+    //     $consulta=$pdo->query($sql);
+    //     $usuarios=$consulta->fetchAll(PDO::FETCH_ASSOC);
+    //     return $usuarios;
+    // }
 
-    # Obtener un usuario
-    # 
-    function getUsuario($usuario){
-        $pdo=getConexionPDO();
-        $sql="SELECT * FROM Usuarios WHERE usuario=?";
-        $consulta=$pdo->prepare($sql);
-        $consulta->execute([$usuario]);
-        $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
-        return $resultado;
-    }
+    // # Obtener un usuario
+    // # 
+    // function getUsuario($usuario){
+    //     $pdo=getConexionPDO();
+    //     $sql="SELECT * FROM Usuarios WHERE usuario=?";
+    //     $consulta=$pdo->prepare($sql);
+    //     $consulta->execute([$usuario]);
+    //     $resultado=$consulta->fetch(PDO::FETCH_ASSOC);
+    //     return $resultado;
+    // }
 
     # Añadir un usuario (imagen y rol por defecto)
     # 
