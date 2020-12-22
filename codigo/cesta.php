@@ -1,5 +1,57 @@
 <?php 
 require_once "funciones.php";
+
+    class CestaCompra
+    {
+        ###Para su correcto funcionamniento los productos deben ser objetos (y no arrays)
+
+        protected $productos = array();
+
+        /**
+         * * @param int ID Añade el producto con ese ID a la cesta
+         */
+        public function nuevoArticulo($codigo)
+        {
+            $producto = BaseDatos::getInstance()->getProducto($codigo);
+            $this->productos[] = $producto;
+        }
+
+        public function getProductos()
+        {
+            return $this->productos;
+        }
+
+        public function getCoste()
+        {
+            $total = 0;
+            foreach ($this->productos as $producto) {
+                $total += $producto->precio;
+            }
+            return $total;
+        }
+
+        public function estaVacia()
+        {
+            if (count($this->productos) == 0)
+                return true;
+            return false;
+        }
+
+        public function guardarCesta()
+        {
+            $_SESSION["cesta"] = $this;
+        }
+
+        public static function cargarCesta()
+        {
+            if (!isset($_SESSION["cesta"])) {
+                return new CestaCompra();
+            }else{
+                return ($_SESSION["cesta"]);
+            }
+        }
+    }
+    
     if (isset($_POST["quitar"])) {
         $idOculto =$_POST["oculto"];
         // print($idOculto);
