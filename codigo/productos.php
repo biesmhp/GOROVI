@@ -1,8 +1,9 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
 if (isset($_POST["añadir"])) {
     $producto = $_POST["oculto"];
-    $_SESSION["cesta"][] = getProducto($producto);
+    $_SESSION["cesta"][] = $instance::getProducto($producto);
 }
 ?>
 
@@ -19,12 +20,24 @@ if (isset($_POST["añadir"])) {
 
 <body>
     <nav class="navbar navbar-dark bg-dark fixed-top">
-        <a class="navbar-brand px-5 volver" href="portada.php">Volver al inicio</a>
+        <a class="navbar-brand px-5 volver" href="portada.php">Inicio</a>
+        <?php if (!isset($_SESSION["usuario"])) : ?>
+            <a class="navbar-brand px-5 volver" href="registro.php">Registrarse</a>
+            <a class="navbar-brand px-5 volver" href="login.php">Iniciar sesión</a>
+        <?php endif; ?>
+        <?php if (isset($_SESSION["usuario"])) : ?>
+            <a class="navbar-brand px-5 volver" href="perfil.php"><?= "Perfil de: " . $_SESSION["usuario"]["usuario"] ?></a>
+            <?php if ($_SESSION["usuario"]["rol"] == "administrador") : ?>
+                <a class="navbar-brand px-5 volver" href="admin.php">Administración</a>
+                <a class="navbar-brand px-5 volver" href="almacen.php">Almacen</a>
+            <?php endif; ?>
+            <a class="navbar-brand px-5 volver" href="cesta.php">Cesta</a>
+        <?php endif; ?>
     </nav>
 
     <div class="container" id="main">
         <div class="row mx-0 mt-5">
-            <?php foreach (getProductos() as $producto) : ?>
+            <?php foreach ($instance::getProductos() as $producto) : ?>
                 <div class="col-12 col-lg-3 m-0 d-flex py-2">
                     <div class="w-100 h-100 d-flex flex-column fondo-producto shadow border rounded">
                         <div class="row mx-0 no-gutters w-100">

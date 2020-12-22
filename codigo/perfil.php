@@ -21,7 +21,7 @@ if (isset($_POST["actualizar"])) {
             $nombre = $_POST["nombre"];
             $apellidos = $_POST["apellidos"];
             $email = $_POST["email"];
-            updateUsuario($_SESSION["usuario"]["id"], $usuario, $nombre, $apellidos, $email);
+            $instance::updateUsuario($_SESSION["usuario"]["id"], $usuario, $nombre, $apellidos, $email);
             $_SESSION["usuario"] = $instance::getUsuario($usuario);
             header("Location: portada.php");
         } else {
@@ -35,11 +35,11 @@ if (isset($_POST["cambiar"])) {
     $passActual = md5($_POST["pass0"]);
     $pass1 = md5($_POST["pass1"]);
     $pass2 = md5($_POST["pass2"]);
-    if (logUsuario($_SESSION["usuario"]["usuario"], $passActual)) {
+    if ($instance::logUsuario($_SESSION["usuario"]["usuario"], $passActual)) {
         $veriPassActual = true;
         if ($pass1 == $pass2) {
             $veriContraseña = true;
-            updatePassUsuario($_SESSION["usuario"]["id"], $pass1);
+            $instance::updatePassUsuario($_SESSION["usuario"]["id"], $pass1);
         } else {
             $veriContraseña = false;
         }
@@ -63,13 +63,13 @@ if (isset($_POST["cambiar"])) {
 <body>
 
     <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand px-5 volver" href="portada.php">Inicio</a>
         <a class="navbar-brand px-5 volver" href="productos.php">Productos</a>
         <?php if (!isset($_SESSION["usuario"])) : ?>
             <a class="navbar-brand px-5 volver" href="registro.php">Registrarse</a>
             <a class="navbar-brand px-5 volver" href="login.php">Iniciar sesión</a>
         <?php endif; ?>
         <?php if (isset($_SESSION["usuario"])) : ?>
-            <a class="navbar-brand px-5 volver" href="perfil.php"><?= "Perfil de: " . $_SESSION["usuario"]["usuario"] ?></a>
             <?php if ($_SESSION["usuario"]["rol"] == "administrador") : ?>
                 <a class="navbar-brand px-5 volver" href="admin.php">Administración</a>
                 <a class="navbar-brand px-5 volver" href="almacen.php">Almacen</a>
@@ -97,7 +97,7 @@ if (isset($_POST["cambiar"])) {
                         <input class="form-control" type="text" name="nombre" value="<?= $_SESSION["usuario"]["nombre"] ?>" placeholder="nombre" required><br>
                         <input class="form-control" type="text" name="apellidos" value="<?= $_SESSION["usuario"]["apellidos"] ?>" placeholder="apellidos" required><br>
                         <input class="form-control" type="email" name="email" value="<?= $_SESSION["usuario"]["email"] ?>" placeholder="email" required><br>
-                        <input class="form-control" type="submit" name="actualizar" value="Actualizar">
+                        <input class="form-control botones" type="submit" name="actualizar" value="Actualizar">
                     </fieldset>
                 </form>
             </div>
@@ -118,7 +118,7 @@ if (isset($_POST["cambiar"])) {
                             La contraseña no coincide
                         <?php endif; ?>
                         <br>
-                        <input class="form-control" type="submit" name="cambiar" value="Cambiar">
+                        <input class="form-control botones" type="submit" name="cambiar" value="Cambiar">
                     </fieldset>
                 </form>
             </div>

@@ -38,7 +38,7 @@ require_once "funciones.php";
     </nav>
 
     <!-- GALERIA PARA LAS CATEGORÍAS Y HACERLAS ENLACE FILTRADO-->
-    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10%; margin-bottom:19%">
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: 10%; margin-bottom:19%; height: 100%; width: 100%">
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -93,4 +93,5 @@ require_once "funciones.php";
     </div>
     <!-- Copyright -->
 </footer>
+
 </html>
