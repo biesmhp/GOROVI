@@ -4,7 +4,7 @@ $instance = BaseDatos::getInstance();
 if (isset($_POST["login"])) {
     $usuario = $_POST["usuario"];
     $contraseña = md5($_POST["contraseña"]);
-    if (logUsuario($usuario, $contraseña)) {
+    if ($instance::logUsuario($usuario, $contraseña)) {
         $_SESSION["usuario"] = $instance::getUsuario($usuario);
         header("Location: portada.php");
     } else {

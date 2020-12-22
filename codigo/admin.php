@@ -18,13 +18,13 @@ $instance = BaseDatos::getInstance();
     # Asciende a admin al usuario seleccionado si no es el usado actualmente
     if (isset($_POST["ascender"])) {
         if (!($_POST["usuarios"]==$_SESSION["usuario"]["usuario"])) {
-            upgradeUsuario($_POST["usuarios"]);
+            $instance::upgradeUsuario($_POST["usuarios"]);
         }
     }
     # Quita del admin al usuario seleccionado si no es el usado actualmente
     if (isset($_POST["descender"])) {
         if (!($_POST["usuarios"]==$_SESSION["usuario"]["usuario"])) {
-            downgradeUsuario($_POST["usuarios"]);
+            $instance::downgradeUsuario($_POST["usuarios"]);
         }
     }
 ?>

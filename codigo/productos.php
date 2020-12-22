@@ -1,8 +1,9 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
 if (isset($_POST["añadir"])) {
     $producto = $_POST["oculto"];
-    $_SESSION["cesta"][] = getProducto($producto);
+    $_SESSION["cesta"][] = $instance::getProducto($producto);
 }
 ?>
 
@@ -24,7 +25,7 @@ if (isset($_POST["añadir"])) {
 
     <div class="container" id="main">
         <div class="row mx-0 mt-5">
-            <?php foreach (getProductos() as $producto) : ?>
+            <?php foreach ($instance::getProductos() as $producto) : ?>
                 <div class="col-12 col-lg-3 m-0 d-flex py-2">
                     <div class="w-100 h-100 d-flex flex-column fondo-producto shadow border rounded">
                         <div class="row mx-0 no-gutters w-100">

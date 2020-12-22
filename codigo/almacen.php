@@ -1,20 +1,21 @@
 <?php
 require_once "funciones.php";
+$instance = BaseDatos::getInstance();
     if (isset($_POST["añadirCategoria"])) {
         $categoria = $_POST["categoria"];
         if ($categoria!=null) {
-            addCategoria($categoria);
+            $instance::addCategoria($categoria);
         }
     }
     if (isset($_POST["borrarCategoria"])) {
         $categoria = $_POST["categoria"];
-        delCategoria($categoria);
+        $instance::delCategoria($categoria);
     }
     if (isset($_POST["añadirProducto"])) {
         $nombre=$_POST["nombre"];
         $categoria=$_POST["categoria"];
         $precio=$_POST["precio"];
-        print(addProducto($nombre,$categoria,$precio));
+        print($instance::addProducto($nombre,$categoria,$precio));
     }
 ?>
 
@@ -30,7 +31,7 @@ require_once "funciones.php";
         <a href="portada.php">Inicio</a>
     </nav>
     <!--Muestra todos los usuarios y sus campos-->
-    <?php if(isset($_POST["ver"])){print_r2(getProductos());}?>
+    <?php if(isset($_POST["ver"])){print_r2($instance::getProductos());}?>
     <form action="" method="POST">
         <input type="submit" name="ver" value="Ver todos los productos">
     </form>
@@ -45,7 +46,7 @@ require_once "funciones.php";
             <?php 
                 if (isset($_POST["buscar"])) {
                     $busqueda = "%".$_POST["busqueda"]."%";
-                    print_r2(getProductosFiltroNombre($busqueda));
+                    print_r2($instance::getProductosFiltroNombre($busqueda));
                 }
             ?>
     <!--Añadir producto-->
@@ -54,7 +55,7 @@ require_once "funciones.php";
             <legend>Añadir producto</legend>
             <input type="text" name="nombre" placeholder="nombre" required><br>
             <select name="categoria">
-                <?php foreach(getCategorias() as $categoria) :?>
+                <?php foreach($instance::getCategorias() as $categoria) :?>
                     <option value="<?=$categoria["id"]?>"><?=$categoria["nombre"]?></option>
                 <?php endforeach ;?>
             </select><br>
@@ -75,7 +76,7 @@ require_once "funciones.php";
         <fieldset>
             <legend>Eliminar categoria</legend>
             <select name="categoria">
-                <?php foreach(getCategorias() as $categoria) :?>
+                <?php foreach($instance::getCategorias() as $categoria) :?>
                     <option value="<?=$categoria["id"]?>"><?=$categoria["nombre"]?></option>
                 <?php endforeach ;?>
             </select>

@@ -21,7 +21,7 @@ if (isset($_POST["actualizar"])) {
             $nombre = $_POST["nombre"];
             $apellidos = $_POST["apellidos"];
             $email = $_POST["email"];
-            updateUsuario($_SESSION["usuario"]["id"], $usuario, $nombre, $apellidos, $email);
+            $instance::updateUsuario($_SESSION["usuario"]["id"], $usuario, $nombre, $apellidos, $email);
             $_SESSION["usuario"] = $instance::getUsuario($usuario);
             header("Location: portada.php");
         } else {
@@ -35,11 +35,11 @@ if (isset($_POST["cambiar"])) {
     $passActual = md5($_POST["pass0"]);
     $pass1 = md5($_POST["pass1"]);
     $pass2 = md5($_POST["pass2"]);
-    if (logUsuario($_SESSION["usuario"]["usuario"], $passActual)) {
+    if ($instance::logUsuario($_SESSION["usuario"]["usuario"], $passActual)) {
         $veriPassActual = true;
         if ($pass1 == $pass2) {
             $veriContraseña = true;
-            updatePassUsuario($_SESSION["usuario"]["id"], $pass1);
+            $instance::updatePassUsuario($_SESSION["usuario"]["id"], $pass1);
         } else {
             $veriContraseña = false;
         }
